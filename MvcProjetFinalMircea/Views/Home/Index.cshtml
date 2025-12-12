@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Accueil";
+}
+
+<div class="container mt-5">
+
+    <!-- TITRE -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Bienvenue sur mon projet MVC 🎉</h1>
+        <p class="text-muted fs-5">
+            Accédez rapidement au blog, au portfolio ou connectez-vous pour gérer le contenu.
+        </p>
+    </div>
+
+    <!-- ROW 1 : BLOG + PORTFOLIO -->
+    <div class="row justify-content-center">
+
+        <!-- CARD BLOG -->
+        <div class="col-md-5 mb-4">
+            <div class="card shadow-lg border-0 h-100">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-journal-text display-4 text-primary"></i>
+                    <h3 class="mt-3">Blog</h3>
+                    <p class="text-muted">
+                        Découvrez mes articles, tutoriels et actualités techniques.
+                    </p>
+                    <a asp-controller="Articles" asp-action="Index" class="btn btn-primary mt-2">
+                        Accéder au blog
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD PORTFOLIO -->
+        <div class="col-md-5 mb-4">
+            <div class="card shadow-lg border-0 h-100">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-kanban display-4 text-success"></i>
+                    <h3 class="mt-3">Portfolio</h3>
+                    <p class="text-muted">
+                        Consultez mes projets, réalisations et expériences professionnelles.
+                    </p>
+                    <a asp-controller="Portfolio" asp-action="Index" class="btn btn-success mt-2">
+                        Voir le portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ROW 2 : CONNEXION -->
+    <div class="row justify-content-center mt-4">
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body text-center p-4">
+
+                    <i class="bi bi-person-circle display-4 text-info"></i>
+
+                    <h3 class="mt-3">Connexion</h3>
+
+                    <p class="text-muted">
+                        Connectez-vous pour créer, éditer ou gérer les articles et le portfolio.
+                    </p>
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-info text-white mt-2 me-2">
+                            Se connecter
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-info mt-2">
+                            S'inscrire
+                        </a>
+                    }
+                    else
+                    {
+                        <p class="text-success fw-bold mt-3">Vous êtes déjà connecté !</p>
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary mt-2 me-2">
+                            Gérer mon compte
+                        </a>
+                        <form asp-area="Identity" asp-page="/Account/Logout"
+                              method="post" class="d-inline">
+                            <button class="btn btn-danger mt-2">Se déconnecter</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

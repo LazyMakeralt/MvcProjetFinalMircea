@@ -1,0 +1,40 @@
+﻿@model MvcProjetFinalMircea.Models.PortfolioItem
+
+@{
+    ViewData["Title"] = "Ajouter un projet";
+}
+
+<h1>Ajouter un projet</h1>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+
+    <div class="mb-3">
+        <label asp-for="Titre" class="form-label"></label>
+        <input asp-for="Titre" class="form-control" />
+        <span asp-validation-for="Titre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Image</label>
+        <input type="file" name="image" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="UrlProjet" class="form-label"></label>
+        <input asp-for="UrlProjet" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Créer</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Retour</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

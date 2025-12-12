@@ -1,0 +1,120 @@
+﻿@model IEnumerable<MvcProjetFinalMircea.Models.PortfolioItem>
+
+@{
+    ViewData["Title"] = "Portfolio";
+}
+
+<div class="container mt-4">
+
+    <!-- la section presentation generale-->
+    <section class="mb-5 text-center">
+        <h1 class="fw-bold">👨‍💻 Développeur Full Stack</h1>
+        <p class="lead mt-3">
+            Développeur passionné par la création d’applications web modernes,
+            performantes et sécurisées.
+        </p>
+    </section>
+
+    <!-- Competence -->
+    <section class="mb-5">
+        <h2 class="mb-4 text-center">🚀 Compétences</h2>
+
+        <div class="row g-4">
+
+            <!-- la card back end-->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Back-End</h5>
+
+                        <span class="badge bg-primary m-1">ASP.NET Core</span>
+                        <span class="badge bg-primary m-1">C#</span>
+                        <span class="badge bg-primary m-1">Entity Framework</span>
+                        <span class="badge bg-primary m-1">SQL Server</span>
+                        <span class="badge bg-primary m-1">API REST</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- la card front end -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Front-End</h5>
+
+                        <span class="badge bg-success m-1">HTML</span>
+                        <span class="badge bg-success m-1">CSS</span>
+                        <span class="badge bg-success m-1">Bootstrap</span>
+                        <span class="badge bg-success m-1">JavaScript</span>
+                        <span class="badge bg-success m-1">Razor</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- la card outils-->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Outils</h5>
+
+                        <span class="badge bg-dark m-1">Visual Studio</span>
+                        <span class="badge bg-dark m-1">Git</span>
+                        <span class="badge bg-dark m-1">GitHub</span>
+                        <span class="badge bg-dark m-1">Azure</span>
+                        <span class="badge bg-dark m-1">Docker</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- La section pour les projets -->
+    <section>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Mes projets</h2>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="btn btn-success"
+                   asp-action="Create">
+                    + Ajouter un projet
+                </a>
+            }
+        </div>
+
+        <div class="row g-4">
+            @foreach (var projet in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+
+                        @if (!string.IsNullOrEmpty(projet.UrlImage))
+                        {
+                            <img src="@projet.UrlImage"
+                                 class="card-img-top"
+                                 style="height:200px; object-fit:cover;" />
+                        }
+
+                        <div class="card-body">
+                            <h5 class="card-title">@projet.Titre</h5>
+                            <p class="card-text">@projet.Description</p>
+                        </div>
+
+                        <div class="card-footer bg-white">
+                            @if (!string.IsNullOrEmpty(projet.UrlProjet))
+                            {
+                                <a href="@projet.UrlProjet"
+                                   target="_blank"
+                                   class="btn btn-outline-primary btn-sm">
+                                    Voir le projet
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+</div>
